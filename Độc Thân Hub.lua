@@ -2438,7 +2438,7 @@ local posZ = 0
     end)
 
 
-    local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "Tele Siêu Nhanh", Default = false })
+    local ToggleBypassTP = Tabs.Main:AddToggle("ToggleBypassTP", {Title = "Tele Siêu Nhanh", Default = false })
     ToggleBypassTP:OnChanged(function(Value)
         BypassTP = Value
     end)
