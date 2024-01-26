@@ -2446,6 +2446,14 @@ local posZ = 0
 end
 
 
+
+local ToggleGun = Tabs.Main:AddToggle("ToggleGun", {Title = "Tự Động Xóa Tố Cáo", Default = false })
+ToggleGun:OnChanged(function(Value)
+    _G.Auto_Stats_Gun = Value
+    end)
+Options.ToggleGun:SetValue(true)
+
+
     local ToggleAutoFarmLevel = Tabs.Main:AddToggle("ToggleAutoFarmLevel", {Title = "Cày Level", Default = false })
     ToggleAutoFarmLevel:OnChanged(function(Value)
         _G.AutoLevel = Value
@@ -2635,7 +2643,7 @@ end
 
     local DropdownMastery = Tabs.Main:AddDropdown("DropdownMastery", {
         Title = "Farm Mode",
-        Values = {"Level","Near Mobs",},
+        Values = {"Level","Near",},
         Multi = false,
         Default = 1,
     })
@@ -2652,7 +2660,7 @@ end
     end)
     Options.ToggleMasteryFruit:SetValue(false)
 
-    local ToggleMasteryGun = Tabs.Main:AddToggle("ToggleMasteryGun", {Title = "Auto Gun Mastery", Default = false })
+    local ToggleMasteryGun = Tabs.Main:AddToggle("ToggleMasteryGun", {Title = "Auto Gun Mastery [ Beta ]", Default = false })
     ToggleMasteryGun:OnChanged(function(Value)
         AutoFarmMasGun = Value
     end)
@@ -4310,7 +4318,7 @@ end
 
 
 
-        local ToggleFactory = Tabs.Main:AddToggle("ToggleFactory", {Title = "Auto Farm Factory", Default = false })
+        local ToggleFactory = Tabs.Main:AddToggle("ToggleFactory", {Title = "Tự Động Đánh Nhà Máy", Default = false })
         ToggleFactory:OnChanged(function(Value)
             _G.Factory = Value
         end)
@@ -4370,7 +4378,7 @@ end
 
 
 
-_G.FastAttackDelay = 0.155
+_G.FastAttackDelay = 0.135
 
     local Client = game.Players.LocalPlayer
     local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
@@ -4570,7 +4578,7 @@ Options.ToggleF:SetValue(true)
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 --Stats
-local ToggleMelee = Tabs.Stats:AddToggle("ToggleMelee", {Title = "Auto Melee", Default = false })
+local ToggleMelee = Tabs.Stats:AddToggle("ToggleMelee", {Title = "Auto Cận Chiến", Default = false })
 ToggleMelee:OnChanged(function(Value)
     _G.Auto_Stats_Melee = Value
     end)
@@ -4579,7 +4587,7 @@ Options.ToggleMelee:SetValue(false)
 
 
 
-local ToggleDe = Tabs.Stats:AddToggle("ToggleDe", {Title = "Auto Defense", Default = false })
+local ToggleDe = Tabs.Stats:AddToggle("ToggleDe", {Title = "Auto Máu", Default = false })
 ToggleDe:OnChanged(function(Value)
     _G.Auto_Stats_Defense = Value
     end)
@@ -4587,7 +4595,7 @@ Options.ToggleDe:SetValue(false)
 
 
 
-local ToggleSword = Tabs.Stats:AddToggle("ToggleSword", {Title = "Auto Sword", Default = false })
+local ToggleSword = Tabs.Stats:AddToggle("ToggleSword", {Title = "Auto Kiếm", Default = false })
 ToggleSword:OnChanged(function(Value)
     _G.Auto_Stats_Sword = Value
     end)
@@ -4595,14 +4603,7 @@ Options.ToggleSword:SetValue(false)
 
 
 
-local ToggleGun = Tabs.Stats:AddToggle("ToggleGun", {Title = "Auto Gun", Default = false })
-ToggleGun:OnChanged(function(Value)
-    _G.Auto_Stats_Gun = Value
-    end)
-Options.ToggleGun:SetValue(false)
-
-
-local ToggleFruit = Tabs.Stats:AddToggle("ToggleFruit", {Title = "Auto Demon Fruit", Default = false })
+local ToggleFruit = Tabs.Stats:AddToggle("ToggleFruit", {Title = "Auto Trái Fruit", Default = false })
 ToggleFruit:OnChanged(function(Value)
     _G.Auto_Stats_Devil_Fruit = Value
     end)
@@ -4614,7 +4615,7 @@ spawn(function()
         if _G.Auto_Stats_Devil_Fruit then
             local args = {
                 [1] = "AddPoint",
-                [2] = "Demon Fruit",
+                [2] = "Trái Fruit",
                 [3] = 3
             }
                         
@@ -4628,7 +4629,7 @@ spawn(function()
         if _G.Auto_Stats_Gun then
             local args = {
                 [1] = "AddPoint",
-                [2] = "Gun",
+                [2] = "Súng",
                 [3] = 3
             }
                         
@@ -4643,7 +4644,7 @@ spawn(function()
         if _G.Auto_Stats_Sword then
             local args = {
                 [1] = "AddPoint",
-                [2] = "Sword",
+                [2] = "Kiếm",
                 [3] = 3
             }
                         
@@ -4657,7 +4658,7 @@ spawn(function()
         if _G.Auto_Stats_Defense then
             local args = {
                 [1] = "AddPoint",
-                [2] = "Defense",
+                [2] = "Máu",
                 [3] = 3
             }
                         
@@ -4672,7 +4673,7 @@ spawn(function()
         if _G.Auto_Stats_Melee then
             local args = {
                 [1] = "AddPoint",
-                [2] = "Melee",
+                [2] = "Cận Chiến",
                 [3] = 3
             }
                         
@@ -4826,19 +4827,19 @@ elseif Second_Sea then
 
 elseif Third_Sea then
     IslandList = {
-        "Mansion",
-        "Port Town",
-        "Great Tree",
-        "Castle On The Sea",
-        "MiniSky", 
-        "Hydra Island",
-        "Floating Turtle",
-        "Haunted Castle",
-        "Ice Cream Island",
-        "Peanut Island",
-        "Cake Island",
-        "Cocoa Island",
-        "Candy Island",
+        "Dinh Thụ",
+        "Cảng",
+        "Cây Đại Thụ",
+        "Pháo Đài Trên Biển",
+        "Đảo Trời", 
+        "Đảo Phụ Nữ",
+        "Đảo Rùa",
+        "Lâu Đài Bóng Tối",
+        "Đảo Kem",
+        "Đảo Đậu Phọng",
+        "Đảo Bánh",
+        "Đảo Coka",
+        "Đảo Kẹo",
        }
     end
 
