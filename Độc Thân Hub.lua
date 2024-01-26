@@ -1984,7 +1984,7 @@ end
         function TP2(P1)
         local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
         if Distance >= 1 then
-        Speed = 350
+        Speed = 300
         end
         game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear), {
           CFrame = P1
@@ -2006,7 +2006,7 @@ end
         if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = true end
         pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/350, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
         tween:Play()
-        if Distance <= 350 then
+        if Distance <= 300 then
             tween:Cancel()
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Pos
         end
@@ -2447,7 +2447,7 @@ end
 
 
 
-local ToggleGun = Tabs.Main:AddToggle("ToggleGun", {Title = "Tự Động Xóa Tố Cáo", Default = false })
+local ToggleGun = Tabs.Main:AddToggle("ToggleGun", {Title = "Tự Động Xóa Tố Cáo [ Reset chỉ vui lòng tắt đi ]", Default = false })
 ToggleGun:OnChanged(function(Value)
     _G.Auto_Stats_Gun = Value
     end)
@@ -3254,6 +3254,27 @@ spawn(function()
         end
     end
 end)
+
+
+local ToggleRandomBone = Tabs.Main:AddToggle("ToggleRandomBone", {Title = "Quay Xương [ Nhanh ]", Default = false })
+ToggleRandomBone:OnChanged(function(Value)  
+		_G.AutoRandomBone = Value
+end)
+Options.ToggleRandomBone:SetValue(false)
+	
+spawn(function()
+	while wait(0.0000000000000000000000000000000000000000000000000001) do
+	if _G.AutoRandomBone then
+	local args = {
+	 [1] = "Bones",
+	 [2] = "Buy",
+	 [3] = 1,
+	 [4] = 1
+	}
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+	end
+	end
+	end)
 
 
 local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {Title = "Cày Katakuri + SpamKatkuri", Default = false })
@@ -4378,7 +4399,7 @@ end
 
 
 
-_G.FastAttackDelay = 0.135
+_G.FastAttackDelay = 0.55
 
     local Client = game.Players.LocalPlayer
     local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
@@ -4477,7 +4498,7 @@ CamShake:Stop()
         if BringMobs then
         pcall(function()
           for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-          if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250 then
+          if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 200 then
           if InMyNetWork(v.HumanoidRootPart) then
             if InMyNetWork(v.HumanoidRootPart) then
           v.HumanoidRootPart.CFrame = FarmPos
@@ -5898,27 +5919,6 @@ end)
 --------------------------------------------------------------------------------------------------------------------------------------------
 --shop
 
-local ToggleRandomBone = Tabs.Shop:AddToggle("ToggleRandomBone", {Title = "Random Bone", Default = false })
-ToggleRandomBone:OnChanged(function(Value)  
-		_G.AutoRandomBone = Value
-end)
-Options.ToggleRandomBone:SetValue(false)
-	
-spawn(function()
-	while wait(0.0000000000000000000000000000000000000000000000000001) do
-	if _G.AutoRandomBone then
-	local args = {
-	 [1] = "Bones",
-	 [2] = "Buy",
-	 [3] = 1,
-	 [4] = 1
-	}
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-	end
-	end
-	end)
-
-
 Tabs.Shop:AddButton({
 	Title = "Geppo",
 	Description = "",
@@ -6065,7 +6065,7 @@ Tabs.Shop:AddButton({
 --misc
 
 Tabs.Misc:AddButton({
-	Title = "Rejoin Server",
+	Title = "Vô Server Khác",
 	Description = "",
 	Callback = function()
 		game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
@@ -6075,7 +6075,7 @@ Tabs.Misc:AddButton({
 
 
 Tabs.Misc:AddButton({
-	Title = "Hop Server",
+	Title = "Đổi Server",
 	Description = "",
 	Callback = function()
 		Hop()
@@ -6191,7 +6191,7 @@ Number = math.random(1, 1000000)
 
 
 Tabs.Misc:AddButton({
-	Title = "Hop Server Low Player",
+	Title = "Triển Server Ít Người Chơi",
 	Description = "",
 	Callback = function()
 		getgenv().AutoTeleport = true
@@ -6242,12 +6242,12 @@ Tabs.Misc:AddButton({
 })
 
 Tabs.Misc:AddParagraph({
-	Title = "Open Ui",
+	Title = "Open Ui [ Không Nên Bật ]",
 	Content = ""
 
 })
 Tabs.Misc:AddButton({
-	Title = "Devil Shop",
+	Title = "Shop Trái Fruits Sell",
 	Description = "",
 	Callback = function()
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
@@ -6258,7 +6258,7 @@ Tabs.Misc:AddButton({
 
 
 Tabs.Misc:AddButton({
-	Title = "Color Haki",
+	Title = "Màu Haki",
 	Description = "",
 	Callback = function()
 		game.Players.localPlayer.PlayerGui.Main.Colors.Visible = true
@@ -6268,7 +6268,7 @@ Tabs.Misc:AddButton({
 
 
 Tabs.Misc:AddButton({
-	Title = "Title Name",
+	Title = "Màu Name",
 	Description = "",
 	Callback = function()
 		local args = {
