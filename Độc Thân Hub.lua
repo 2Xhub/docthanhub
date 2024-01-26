@@ -2438,22 +2438,13 @@ local posZ = 0
     end)
 
 
-    local ToggleBypassTP = Tabs.Main:AddToggle("ToggleBypassTP", {Title = "Tele Siêu Nhanh", Default = false })
+    local ToggleBypassTP = Tabs.Main:AddToggle("ToggleBypassTP", {Title = "Bypass Tp + Anti Afk", Default = false })
     ToggleBypassTP:OnChanged(function(Value)
         BypassTP = Value
     end)
     Options.ToggleBypassTP:SetValue(true)
 end
 
-
-local ToggleAntiAfk = Tabs.Main:AddToggle("ToggleAntiAfk", {Title = "Chống Afk", Default = false })
-     ToggleAntiAfk:OnChanged(function(Value)
-          AntiAfk = Value
-     end)
-     Options.ToggleAntiAfk:SetValue(true)
-end
-end
-end)  
 
     local ToggleAutoFarmLevel = Tabs.Main:AddToggle("ToggleAutoFarmLevel", {Title = "Cày Level", Default = false })
     ToggleAutoFarmLevel:OnChanged(function(Value)
@@ -4379,7 +4370,7 @@ end
 
 
 
-_G.FastAttackDelay = 0.175
+_G.FastAttackDelay = 0.155
 
     local Client = game.Players.LocalPlayer
     local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
@@ -4521,7 +4512,7 @@ CamShake:Stop()
 
 
 
-local ToggleRemove = Tabs.Setting:AddToggle("ToggleRemove", {Title = "Xóa Dame Kill Mode", Default = true })
+local ToggleRemove = Tabs.Setting:AddToggle("ToggleRemove", {Title = "Anti Ban", Default = true })
 ToggleRemove:OnChanged(function(Value)
     FaiFaoRemovetext = Value
     end)
