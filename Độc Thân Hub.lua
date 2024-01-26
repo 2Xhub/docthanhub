@@ -2393,14 +2393,14 @@ local posZ = 0
         Multi = false,
         Default = 1,
     })
-    DropdownSelectWeapon:SetValue('Melee')
+    DropdownSelectWeapon:SetValue('Cận Chiến')
     DropdownSelectWeapon:OnChanged(function(Value)
         ChooseWeapon = Value
     end)
     task.spawn(function()
         while wait() do
             pcall(function()
-                if ChooseWeapon == "Melee" then
+                if ChooseWeapon == "Cận Chiến" then
                     for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                         if v.ToolTip == "Melee" then
                             if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
@@ -2438,7 +2438,15 @@ local posZ = 0
     end)
 
 
-    local ToggleAutoFarmLevel = Tabs.Main:AddToggle("ToggleAutoFarmLevel", {Title = "Farm Level", Default = false })
+    local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "Tele Siêu Nhanh", Default = false })
+    ToggleBypassTP:OnChanged(function(Value)
+        BypassTP = Value
+    end)
+    Options.ToggleBypassTP:SetValue(true)
+end
+
+
+    local ToggleAutoFarmLevel = Tabs.Main:AddToggle("ToggleAutoFarmLevel", {Title = "Cày Level", Default = false })
     ToggleAutoFarmLevel:OnChanged(function(Value)
         _G.AutoLevel = Value
     end)
@@ -4362,7 +4370,7 @@ end
 
 
 
-_G.FastAttackDelay = 0.10
+_G.FastAttackDelay = 0.175
 
     local Client = game.Players.LocalPlayer
     local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
@@ -4501,15 +4509,6 @@ CamShake:Stop()
       return false
       end
       end
-
-
-
-    local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "Tele Siêu Nhanh", Default = false })
-    ToggleBypassTP:OnChanged(function(Value)
-        BypassTP = Value
-    end)
-    Options.ToggleBypassTP:SetValue(true)
-end
 
 
 
